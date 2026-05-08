@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+        }
+        .login-card {
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            animation: fadeIn 0.8s ease-out;
+        }
+        .form-control { border-radius: 10px; border: none; }
+        .btn-primary { background: #ff7eb3; border: none; transition: 0.3s; }
+        .btn-primary:hover { background: #ff4f91; transform: translateY(-2px); }
+        .input-group-text { background: transparent; color: white; border: none; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-lg-4 col-sm-10 card login-card p-4">
+                <div class="text-center mb-4">
+                    <i class="fa-solid fa-user-circle fa-4x mb-2"></i>
+                    <h3 class="fw-bold">Login</h3>
+                    <p class="small opacity-75">Silahkan masuk ke akun Anda</p>
+                </div>
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label class="small mb-1">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                            <input type="text" class="form-control" id="username" placeholder="Username" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="small mb-1">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                            <input type="password" class="form-control" id="password" placeholder="Password" required>
+                            <span class="input-group-text" style="cursor:pointer" onclick="togglePassword()">
+                                <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary fw-bold">Login</button>
+                        <button type="reset" class="btn btn-light btn-sm">Reset</button>
+                    </div>
+                    <p class="text-center mt-4 small">Belum punya akun? <a href="#" class="text-white fw-bold text-decoration-none">Daftar</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const pass = document.getElementById('password');
+            const icon = document.getElementById('eyeIcon');
+            const isPass = pass.type === 'password';
+            pass.type = isPass ? 'text' : 'password';
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        }
+
+        document.getElementById('loginForm').onsubmit = (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            alert(`Selamat datang, ${user}!`);
+        };
+    </script>
+</body>
+</html>
